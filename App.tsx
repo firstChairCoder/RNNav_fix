@@ -2,6 +2,8 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { Navigation } from "react-native-navigation";
 
+import { mainRoot } from "./index"
+
 export default function App(props) {
   return (
     <View style={styles.container}>
@@ -13,13 +15,6 @@ export default function App(props) {
           Navigation.push(props.componentId, {
             component: {
               name: "Settings",
-              options: {
-                topBar: {
-                  title: {
-                    text: "Settings",
-                  },
-                },
-              },
             },
           })
         }
@@ -44,17 +39,43 @@ export const SettingsScreen = () => {
   );
 };
 
+export const LoginScreen = () => {
+  return (
+    <View style={styles.root}>
+      <Button
+        title="Login"
+        color="#710ce3"
+        onPress={() => Navigation.setRoot(mainRoot)}
+      />
+    </View>
+  );
+};
+
 App.options = {
   topBar: {
-    background: {
-      color: "#4d089a",
-    },
     title: {
       text: "Home",
       color: "white",
     },
   },
+  bottomTab: {
+    text: "Home",
+  },
 };
+
+SettingsScreen.options = {
+  topBar: {
+    title: {
+      text: "Settings",
+      color: "white",
+    },
+  },
+  bottomTab: {
+    text: "Settings",
+  },
+};
+
+
 
 const styles = StyleSheet.create({
   container: {
